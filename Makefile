@@ -2,13 +2,16 @@ CC = gcc
 CFLAGS = -Wall -Wextra -std=c17
 
 TARGET = mandelbrot
-OBJ = main.o
+OBJ = main.o mandelbrot.o
 
 $(TARGET): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(TARGET)
 
-main.o: main.c
+main.o: main.c mandelbrot.h
 	$(CC) $(CFLAGS) -c main.c
+
+mandelbrot.o: mandelbrot.c mandelbrot.h
+	$(CC) $(CFLAGS) -c mandelbrot.c
 
 run: $(TARGET)
 	./$(TARGET)
