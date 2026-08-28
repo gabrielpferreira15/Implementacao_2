@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -std=c17
 
-TARGET = madelbrot
+TARGET = mandelbrot
 OBJ = main.o
 
 $(TARGET): $(OBJ)
