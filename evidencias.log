@@ -27,4 +27,27 @@ gcc -Wall -Wextra -std=c17 main.o mandelbrot.o -o mandelbrot
 [1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004h../mandelbrot[1m [0m[0m 800 600 100 4[?2004l
 [1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004hmmake clean[?2004l
 rm -f main.o mandelbrot.o mandelbrot
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004hmake clean[10D          [10Dmake clean[10D./mandelbrot 800 600 100 4[26Dmake clean                [16D[10D          [10Dmmake[?2004l
+gcc -Wall -Wextra -std=c17 -c main.c
+gcc -Wall -Wextra -std=c17 -c mandelbrot.c
+gcc -Wall -Wextra -std=c17 main.o mandelbrot.o -o mandelbrot
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004hmake clean[10D./mandelbrot 800 600 100 4[?2004l
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004hmmake clean[?2004l
+rm -f main.o mandelbrot.o mandelbrot
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004hmake clean[10D          [10Dmake clean     [?2004l
+gcc -Wall -Wextra -std=c17 -c main.c
+gcc -Wall -Wextra -std=c17 -c mandelbrot.c
+gcc -Wall -Wextra -std=c17 main.o mandelbrot.o -o mandelbrot
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004h[H[2J[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [Kmake clean[10D./mandelbrot 800 600 100 4[?2004l
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004hmmake clean[?2004l
+rm -f main.o mandelbrot.o mandelbrot
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004h[7m./mandelbrot 4 4 50 1[27m[21D[27m.[27m/[27mm[27ma[27mn[27md[27me[27ml[27mb[27mr[27mo[27mt[27m [27m4[27m [27m4[27m [27m5[27m0[27m [27m1[?2004l
+zsh: no such file or directory: ./mandelbrot
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004hmmake[?2004l
+gcc -Wall -Wextra -std=c17 -c main.c
+gcc -Wall -Wextra -std=c17 -c mandelbrot.c
+gcc -Wall -Wextra -std=c17 main.o mandelbrot.o -o mandelbrot
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004h[7m./mandelbrot 4 4 50 1[27m[21D[27m.[27m/[27mm[27ma[27mn[27md[27me[27ml[27mb[27mr[27mo[27mt[27m [27m4[27m [27m4[27m [27m5[27m0[27m [27m1[?2004l
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004hmmake clean[?2004l
+rm -f main.o mandelbrot.o mandelbrot
 [1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004h

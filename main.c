@@ -3,7 +3,8 @@
 #include "mandelbrot.h"
 
 int main(int argc, char *argv[]){
-if (argc < 5) {
+
+    if (argc < 5) {
         fprintf(stderr, "Erro: Argumentos insuficientes.\n");
         return 1; 
     }
@@ -13,13 +14,13 @@ if (argc < 5) {
     int max_iteracoes = atoi(argv[3]);
 
     if (largura <= 0 || altura <= 0 || max_iteracoes <= 0) {
-        fprintf(stderr, "Erro: Parametros inválidos.\n");
+        fprintf(stderr, "Erro: Parâmetros inválidos.\n");
         return 1;
     }
 
     FILE *arquivo = fopen("mandelbrot_gpsf_serial.pgm", "w");
     if (arquivo == NULL) {
-        fprintf(stderr, "Erro: Falha ao criar o arquivo.\n");
+        fprintf(stderr, "Erro: Falha ao criar/abrir o arquivo.\n");
         return 1;
     }
 
