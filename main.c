@@ -1,4 +1,4 @@
-#include <omp.h> 
+#include <omp.h>
 #include <stdio.h>
 #include <errno.h>
 #include <stdlib.h>
@@ -59,16 +59,20 @@ int main(int argc, char *argv[]){
     
     omp_set_num_threads(num_threads);
 
-    #pragma omp parallel
+    #pragma omp parallel for ordered
     for (int y = 0; y < altura; y++) {
+        int buffer[largura]; 
         for (int x = 0; x < largura; x++) {
-            
-            int intensidade = calcular_pixel_mandelbrot(x, largura, y, altura, max_iteracoes);
-            
-            fprintf(arquivo_omp, "%d ", intensidade);
+            buffer[x] = calcular_pixel_mandelbrot(x, largura, y, altura, max_iteracoes);
         }
-        
-        fprintf(arquivo_omp, "\n");
+
+        #pragma omp ordered
+        {
+            for (int x = 0; x < largura; x++) {
+                fprintf(arquivo_omp, "%d ", buffer[x]);
+            }
+            fprintf(arquivo_omp, "\n");
+        }
     }
 
     fclose(arquivo_omp);
