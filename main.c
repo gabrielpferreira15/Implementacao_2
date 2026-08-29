@@ -1,3 +1,4 @@
+#include <omp.h> 
 #include <stdio.h>
 #include <errno.h>
 #include <stdlib.h>
@@ -34,7 +35,7 @@ int main(int argc, char *argv[]){
 
     FILE *arquivo = fopen("mandelbrot_gpsf_serial.pgm", "w");
     if (arquivo == NULL) {
-        fprintf(stderr, "Erro: Falha ao criar/abrir o arquivo\n");
+        fprintf(stderr, "Erro: Falha ao criar o arquivo\n");
         return 1;
     }
 
@@ -53,5 +54,24 @@ int main(int argc, char *argv[]){
     }
 
     fclose(arquivo);
+
+    FILE *arquivo_omp = fopen("mandelbrot_gpsf_openmp.pgm", "w");
+    
+    omp_set_num_threads(num_threads);
+
+    #pragma omp parallel
+    for (int y = 0; y < altura; y++) {
+        for (int x = 0; x < largura; x++) {
+            
+            int intensidade = calcular_pixel_mandelbrot(x, largura, y, altura, max_iteracoes);
+            
+            fprintf(arquivo_omp, "%d ", intensidade);
+        }
+        
+        fprintf(arquivo_omp, "\n");
+    }
+
+    fclose(arquivo_omp);
+
     return 0;
 }
