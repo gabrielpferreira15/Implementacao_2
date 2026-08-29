@@ -1,5 +1,5 @@
 CC = gcc-16
-CFLAGS = -Wall -Wextra -std=c17 -fopenmp
+CFLAGS = -Wall -Wextra -std=c17 -fopenmp -pthread
 
 TARGET = mandelbrot
 OBJ = main.o mandelbrot.o

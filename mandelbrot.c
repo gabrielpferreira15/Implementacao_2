@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stddef.h>
 #include "mandelbrot.h"
 
 double min_real = -2.0;
@@ -33,3 +34,14 @@ int calcular_pixel_mandelbrot(int x, int largura, int y, int altura, int max_ite
     return intensidade_pixel;
 }
 
+void *calcular_mandelbrot_pthreads(void *arg) {
+    Pthreads *args = (Pthreads *)arg;
+
+    for (int y = args->linha_inicio; y < args->linha_fim; y++) {
+        for (int x = 0; x < args->largura; x++) {
+            int intensidade = calcular_pixel_mandelbrot(x, args->largura, y, args->altura, args->max_iteracoes);
+            args->matriz_resultado[y * args->largura + x] = intensidade;
+        }
+    }
+    return NULL;
+}

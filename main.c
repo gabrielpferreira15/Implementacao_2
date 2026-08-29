@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <errno.h>
 #include <stdlib.h>
+#include <pthread.h>
 #include "mandelbrot.h"
 
 long converter_argumento(const char *str, const char *nome_campo) {
@@ -131,5 +132,56 @@ int main(int argc, char *argv[]){
         return 1;
     }
 
+    int *matriz_imagem = malloc(largura * altura * sizeof(int));
+    if (matriz_imagem == NULL) {
+        FILE *erro = fopen("erros.txt", "w");
+        if (erro != NULL) {
+            fprintf(erro, "Erro: Falha de alocação de memória para o Pthreads1\n");
+            fclose(erro);
+        }
+        return 1;
+    }
+
+    pthread_t threads[num_threads];
+    Pthreads args_thread[num_threads];
+
+    int linhas_por_thread = altura/num_threads;
+    int linhas_extras = altura%num_threads;
+    int linha_atual = 0;
+
+    for (int i = 0; i < num_threads; i++) {
+        args_thread[i].id_thread = i;
+        args_thread[i].largura = largura;
+        args_thread[i].altura = altura;
+        args_thread[i].max_iteracoes = max_iteracoes;
+        args_thread[i].matriz_resultado = matriz_imagem;
+        args_thread[i].linha_inicio = linha_atual;
+        
+        int carga_adicional; 
+
+        if (i < linhas_extras) { 
+            carga_adicional = 1; 
+        } else { 
+            carga_adicional = 0; 
+        }
+
+        args_thread[i].linha_fim = linha_atual + linhas_por_thread + carga_adicional;
+        
+        linha_atual = args_thread[i].linha_fim;
+
+        pthread_create(&threads[i], NULL, calcular_mandelbrot_pthreads, &args_thread[i]);
+    }
+
+    FILE *arquivo_pth1 = fopen("mandelbrot_gpsf_pthreads1.pgm", "w");
+    
+    for (int y = 0; y < altura; y++) {
+        for (int x = 0; x < largura; x++) {
+            fprintf(arquivo_pth1, "%d ", matriz_imagem[y * largura + x]);
+        }
+        fprintf(arquivo_pth1, "\n");
+    }
+
+    fclose(arquivo_pth1);
+    free(matriz_imagem);
     return 0;
 }
