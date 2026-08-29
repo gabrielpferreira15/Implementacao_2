@@ -50,4 +50,51 @@ gcc -Wall -Wextra -std=c17 main.o mandelbrot.o -o mandelbrot
 [1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004h[7m./mandelbrot 4 4 50 1[27m[21D[27m.[27m/[27mm[27ma[27mn[27md[27me[27ml[27mb[27mr[27mo[27mt[27m [27m4[27m [27m4[27m [27m5[27m0[27m [27m1[?2004l
 [1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004hmmake clean[?2004l
 rm -f main.o mandelbrot.o mandelbrot
-[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004h
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004hmmake[?2004l
+gcc -Wall -Wextra -std=c17 -c main.c
+gcc -Wall -Wextra -std=c17 -c mandelbrot.c
+gcc -Wall -Wextra -std=c17 main.o mandelbrot.o -o mandelbrot
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004hmake clean[10D./mandelbrot 4 4 50 1[?2004l
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004h./mandelbrot 4 4 50 1[21Dmake                 [17D clean[10D./mandelbrot 4 4 50 1[21Dmake                 [17D./mandelbrot 4 4 50 1[21Dmake clean           [11D[10D./mandelbrot 800 600 100 4[?2004l
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004hmmake clean[?2004l
+rm -f main.o mandelbrot.o mandelbrot
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004heexit[?2004l
+
+Saving session...
+...saving history...truncating history files...
+...completed.
+Deleting expired sessions...none found.
+
+Script done on Fri Aug 28 19:02:21 2026
+Script started on Fri Aug 28 21:09:57 2026
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004h[H[2J[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K../m .  mmake[?2004l
+gcc -Wall -Wextra -std=c17 -c main.c
+[1mmain.c:28:9: [0m[0;1;35mwarning: [0m[1munused variable 'num_threads' [-Wunused-variable][0m
+   28 |     [0;34mint[0m num_threads = ([0;34mint[0m)converter_argumento(argv[[0;32m4[0m], [0;32m"num_threads"[0m);[0m
+      | [0;1;32m        ^~~~~~~~~~~
+[0m1 warning generated.
+gcc -Wall -Wextra -std=c17 -c mandelbrot.c
+gcc -Wall -Wextra -std=c17 main.o mandelbrot.o -o mandelbrot
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004h../mandelbrot[1m [0m[0m 1  abc 1 1 1[?2004l
+Erro: Valor inválido para 'largura'. Insira um numero inteiro positivo.
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004h./mandelbrot abc 1 1 1[1C 1 1 1 1  1 1  1 1  1 1 1 1 1[1C 1 1a 1 1b 1 1c 1 1[1C 1 1[?2004l
+Erro: Valor inválido para 'altura'. Insira um numero inteiro positivo.
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004h./mandelbrot 1 abc  1 1[1C[1C[1C  1 1   1 1   1 1 1  1 1[1C[1C[1C 1 1 a 1b 1c 1[1C 11 [?2004l
+Erro: Valor inválido para 'max_iteracoes'. Insira um numero inteiro positivo.
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004h./mandelbrot 1 1 abc 1 1  1  1 1 [1C 11 1[1C[1C abc[?2004l
+Erro: Valor inválido para 'num_threads'. Insira um numero inteiro positivo.
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004hmmake clena   an  ean[?2004l
+rm -f main.o mandelbrot.o mandelbrot
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004hppwd[?2004l
+/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004hwwhoami[?2004l
+gabrielpeixoto
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004hddate[?2004l
+Sex 28 Ago 2026 21:11:18 -03
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004heeix e exit[?2004l
+
+Saving session...
+...saving history...truncating history files...
+...completed.
+
+Script done on Fri Aug 28 21:11:30 2026
