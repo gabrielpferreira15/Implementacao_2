@@ -2,23 +2,24 @@
 #include <stdio.h>
 #include <errno.h>
 #include <stdlib.h>
+#include <limits.h>
 #include <pthread.h>
 #include "mandelbrot.h"
 
-long converter_argumento(const char *str, const char *nome_campo) {
+int converter_argumento(const char *str, const char *nome_campo) {
     char *endptr;
     errno = 0;
     long valor = strtol(str, &endptr, 10);
     
-    if (errno != 0 || *endptr != '\0' || valor <= 0) {
+    if (errno != 0 || *endptr != '\0' || valor <= 0 || valor > INT_MAX) {
         FILE *erro = fopen("erros.txt", "w");
         if (erro != NULL) {
-            fprintf(erro, "Erro: Valor invalido para '%s'. Insira um numero inteiro positivo\n", nome_campo);
+            fprintf(erro, "Erro: Valor inválido para '%s'. Insira um número inteiro positivo\n", nome_campo);
             fclose(erro);
         }
         exit(1);
     }
-    return valor;
+    return (int)valor;
 }
 
 int main(int argc, char *argv[]){
@@ -32,15 +33,10 @@ int main(int argc, char *argv[]){
         return 1; 
     }
 
-    int largura = (int)converter_argumento(argv[1], "largura");   
-    int altura = (int)converter_argumento(argv[2], "altura");
-    int max_iteracoes = (int)converter_argumento(argv[3], "max_iteracoes");
-    int num_threads = (int)converter_argumento(argv[4], "num_threads");
-
-    if (largura <= 0 || altura <= 0 || max_iteracoes <= 0) {
-        fprintf(stderr, "Erro: Parâmetros inválidos\n");
-        return 1;
-    }
+    int largura = converter_argumento(argv[1], "largura");   
+    int altura = converter_argumento(argv[2], "altura");
+    int max_iteracoes = converter_argumento(argv[3], "max_iteracoes");
+    int num_threads = converter_argumento(argv[4], "num_threads");
 
     FILE *arquivo = fopen("mandelbrot_gpsf_serial.pgm", "w");
 
@@ -177,15 +173,41 @@ int main(int argc, char *argv[]){
     }
 
     FILE *arquivo_pth1 = fopen("mandelbrot_gpsf_pthreads1.pgm", "w");
+    if (arquivo_pth1 == NULL) {
+        free(matriz_imagem);
+        FILE *erro = fopen("erros.txt", "w");
+        if (erro != NULL) {
+            fprintf(erro, "Erro: Falha ao criar o arquivo Pthreads1\n");
+            fclose(erro);
+        }
+        return 1;
+    }
     
+    int erro_pth1 = 0;
     for (int y = 0; y < altura; y++) {
         for (int x = 0; x < largura; x++) {
-            fprintf(arquivo_pth1, "%d ", matriz_imagem[y * largura + x]);
+            if (fprintf(arquivo_pth1, "%d ", matriz_imagem[y * largura + x]) < 0) {
+                erro_pth1 = 1;
+                break;
+            }
         }
-        fprintf(arquivo_pth1, "\n");
+        if (erro_pth1 || fprintf(arquivo_pth1, "\n") < 0) {
+            erro_pth1 = 1;
+            break;
+        }
     }
 
     fclose(arquivo_pth1);
     free(matriz_imagem);
+
+    if (erro_pth1) {
+        FILE *erro = fopen("erros.txt", "w");
+        if (erro != NULL) {
+            fprintf(erro, "Erro: Falha ao escrever no arquivo Pthreads1\n");
+            fclose(erro);
+        }
+        return 1;
+    }
+
     return 0;
 }

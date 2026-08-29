@@ -507,3 +507,25 @@ Saving session...
 Deleting expired sessions...none found.
 
 Script done on Sat Aug 29 19:22:04 2026
+Script started on Sat Aug 29 19:46:31 2026
+Restored session: Sáb 29 Ago 2026 19:22:04 -03
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004hppwd[?2004l
+/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004hwwhoaim  mi[?2004l
+gabrielpeixoto
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004hddate[?2004l
+Sáb 29 Ago 2026 19:46:38 -03
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004hmmake[?2004l
+gcc-16 -Wall -Wextra -std=c17 -fopenmp -pthread -c main.c
+gcc-16 -Wall -Wextra -std=c17 -fopenmp -pthread -c mandelbrot.c
+gcc-16 -Wall -Wextra -std=c17 -fopenmp -pthread main.o mandelbrot.o -o mandelbrot
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004hmakedat[1Cwhoamipwd   exitmake clean[10D./mandelbrot 10 6 40 4[?2004l
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004hmmae kec  clen an[?2004l
+rm -f main.o mandelbrot.o mandelbrot
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004heexit[?2004l
+
+Saving session...
+...saving history...truncating history files...
+...completed.
+
+Script done on Sat Aug 29 19:47:01 2026
