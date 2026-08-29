@@ -119,3 +119,27 @@ Saving session...
 ...completed.
 
 Script done on Sat Aug 29 12:18:37 2026
+Script started on Sat Aug 29 12:33:38 2026
+Restored session: Sáb 29 Ago 2026 12:18:37 -03
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004hppwd[?2004l
+/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004hwwhoami[?2004l
+gabrielpeixoto
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004hddate[?2004l
+Sáb 29 Ago 2026 12:33:49 -03
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004hmmake[?2004l
+gcc-16 -Wall -Wextra -std=c17 -c main.c
+[01m[Kmain.c:[m[K In function '[01m[Kmain[m[K':
+[01m[Kmain.c:62:[m[K [01;35m[Kwarning: [m[Kignoring '[01m[K#pragma omp parallel[m[K' [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc-16.2.0/gcc/Warning-Options.html#index-Wno-unknown-pragmas-Wunknown-pragmas]8;;[m[K]
+   62 |     #pragma omp parallel
+gcc-16 -Wall -Wextra -std=c17 -c mandelbrot.c
+gcc-16 -Wall -Wextra -std=c17 main.o mandelbrot.o -o mandelbrot
+Undefined symbols for architecture arm64:
+  "_omp_set_num_threads", referenced from:
+      _main in main.o
+ld: symbol(s) not found for architecture arm64
+collect2: error: ld returned 1 exit status
+make: *** [mandelbrot] Error 1
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004hmmake clean[?2004l
+rm -f main.o mandelbrot.o mandelbrot
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBookAir/Users/gabrielpeixoto/Documents/FACULDADE/CC/P3/IFSO/gpsf[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K[?2004h[H[2J[0m[27m[24m[Jgabrielpeixoto@MacBookAir gpsf % [K

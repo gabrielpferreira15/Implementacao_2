@@ -1,4 +1,4 @@
-CC = gcc
+CC = gcc-16
 CFLAGS = -Wall -Wextra -std=c17
 
 TARGET = mandelbrot
