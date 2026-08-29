@@ -172,6 +172,10 @@ int main(int argc, char *argv[]){
         pthread_create(&threads[i], NULL, calcular_mandelbrot_pthreads, &args_thread[i]);
     }
 
+    for (int i = 0; i < num_threads; i++) {
+        pthread_join(threads[i], NULL);
+    }
+
     FILE *arquivo_pth1 = fopen("mandelbrot_gpsf_pthreads1.pgm", "w");
     
     for (int y = 0; y < altura; y++) {
