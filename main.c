@@ -1,4 +1,5 @@
 #include <omp.h>
+#include <time.h>
 #include <stdio.h>
 #include <errno.h>
 #include <stdlib.h>
@@ -33,10 +34,15 @@ int main(int argc, char *argv[]){
         return 1; 
     }
 
+    struct timespec inicio, fim;
+    double tempo_serial, tempo_omp, tempo_pth1, tempo_pth2;
+
     int largura = converter_argumento(argv[1], "largura");   
     int altura = converter_argumento(argv[2], "altura");
     int max_iteracoes = converter_argumento(argv[3], "max_iteracoes");
     int num_threads = converter_argumento(argv[4], "num_threads");
+
+    clock_gettime(CLOCK_MONOTONIC, &inicio);
 
     FILE *arquivo = fopen("mandelbrot_gpsf_serial.pgm", "w");
 
@@ -75,6 +81,11 @@ int main(int argc, char *argv[]){
         }
     }
     fclose(arquivo);
+
+    clock_gettime(CLOCK_MONOTONIC, &fim);
+    tempo_serial = (fim.tv_sec - inicio.tv_sec) + (fim.tv_nsec - inicio.tv_nsec)/1000000000.0;
+
+    clock_gettime(CLOCK_MONOTONIC, &inicio);
 
     FILE *arquivo_omp = fopen("mandelbrot_gpsf_openmp.pgm", "w");
 
@@ -127,6 +138,11 @@ int main(int argc, char *argv[]){
         }
         return 1;
     }
+
+    clock_gettime(CLOCK_MONOTONIC, &fim);
+    tempo_omp = (fim.tv_sec - inicio.tv_sec) + (fim.tv_nsec - inicio.tv_nsec)/1000000000.0;
+
+    clock_gettime(CLOCK_MONOTONIC, &inicio);
 
     int *matriz_imagem = malloc(largura * altura * sizeof(int));
     if (matriz_imagem == NULL) {
@@ -209,6 +225,11 @@ int main(int argc, char *argv[]){
         return 1;
     }
 
+    clock_gettime(CLOCK_MONOTONIC, &fim);
+    tempo_pth1 = (fim.tv_sec - inicio.tv_sec) + (fim.tv_nsec - inicio.tv_nsec)/1000000000.0;
+
+    clock_gettime(CLOCK_MONOTONIC, &inicio);
+
     int *matriz_imagem2 = malloc(largura * altura * sizeof(int));
     if (matriz_imagem2 == NULL) {
         FILE *erro = fopen("erros.txt", "w");
@@ -273,6 +294,26 @@ int main(int argc, char *argv[]){
         }
         return 1;
     }
+
+    clock_gettime(CLOCK_MONOTONIC, &fim);
+    tempo_pth2 = (fim.tv_sec - inicio.tv_sec) + (fim.tv_nsec - inicio.tv_nsec)/1000000000.0;
+
+    FILE *tempos = fopen("times.txt", "w");
+    if (tempos == NULL) {
+        FILE *erro = fopen("erros.txt", "w");
+        if (erro != NULL) {
+            fprintf(erro, "Erro: Falha ao criar o arquivo times.txt\n");
+            fclose(erro);
+        }
+        return 1;
+    }
+
+    fprintf(tempos, "Serial: %.6fs\n", tempo_serial);
+    fprintf(tempos, "OpenMP: %.6fs\n", tempo_omp);
+    fprintf(tempos, "Pthreads1: %.6fs\n", tempo_pth1);
+    fprintf(tempos, "Pthreads2: %.6fs\n", tempo_pth2);
+
+    fclose(tempos);
 
     return 0;
 }
