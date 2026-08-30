@@ -34,10 +34,22 @@ int calcular_pixel_mandelbrot(int x, int largura, int y, int altura, int max_ite
     return intensidade_pixel;
 }
 
-void *calcular_mandelbrot_pthreads(void *arg) {
+void *calcular_mandelbrot_pthreads1(void *arg) {
     Pthreads *args = (Pthreads *)arg;
 
     for (int y = args->linha_inicio; y < args->linha_fim; y++) {
+        for (int x = 0; x < args->largura; x++) {
+            int intensidade = calcular_pixel_mandelbrot(x, args->largura, y, args->altura, args->max_iteracoes);
+            args->matriz_resultado[y * args->largura + x] = intensidade;
+        }
+    }
+    return NULL;
+}
+
+void *calcular_mandelbrot_pthreads2(void *arg) {
+    Pthreads *args = (Pthreads *)arg;
+
+    for (int y = args->id_thread; y < args->altura; y += args->num_threads) {
         for (int x = 0; x < args->largura; x++) {
             int intensidade = calcular_pixel_mandelbrot(x, args->largura, y, args->altura, args->max_iteracoes);
             args->matriz_resultado[y * args->largura + x] = intensidade;

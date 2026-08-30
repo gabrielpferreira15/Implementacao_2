@@ -6,6 +6,7 @@ typedef struct {
     int largura;
     int altura;
     int max_iteracoes;
+    int num_threads;
     int linha_inicio;
     int linha_fim;
     int *matriz_resultado;
@@ -13,6 +14,8 @@ typedef struct {
 
 int calcular_pixel_mandelbrot(int x, int largura, int y, int altura, int max_iter);
 
-void *calcular_mandelbrot_pthreads(void *arg);
+void *calcular_mandelbrot_pthreads1(void *arg);
+
+void *calcular_mandelbrot_pthreads2(void *arg);
 
 #endif

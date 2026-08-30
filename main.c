@@ -165,7 +165,7 @@ int main(int argc, char *argv[]){
         
         linha_atual = args_thread[i].linha_fim;
 
-        pthread_create(&threads[i], NULL, calcular_mandelbrot_pthreads, &args_thread[i]);
+        pthread_create(&threads[i], NULL, calcular_mandelbrot_pthreads1, &args_thread[i]);
     }
 
     for (int i = 0; i < num_threads; i++) {
@@ -208,6 +208,46 @@ int main(int argc, char *argv[]){
         }
         return 1;
     }
+
+    int *matriz_imagem2 = malloc(largura * altura * sizeof(int));
+    if (matriz_imagem2 == NULL) {
+        FILE *erro = fopen("erros.txt", "w");
+        if (erro != NULL) {
+            fprintf(erro, "Erro: Falha de alocação de memória para o Pthreads 2\n");
+            fclose(erro);
+        }
+        return 1;
+    }
+
+    pthread_t threads2[num_threads];
+    Pthreads args_thread2[num_threads];
+
+    for (int i = 0; i < num_threads; i++) {
+        args_thread2[i].id_thread = i;
+        args_thread2[i].num_threads = num_threads; 
+        args_thread2[i].largura = largura;
+        args_thread2[i].altura = altura;
+        args_thread2[i].max_iteracoes = max_iteracoes;
+        args_thread2[i].matriz_resultado = matriz_imagem2;
+        
+        pthread_create(&threads2[i], NULL, calcular_mandelbrot_pthreads2, &args_thread2[i]);
+    }
+
+    for (int i = 0; i < num_threads; i++) {
+        pthread_join(threads2[i], NULL);
+    }
+
+    FILE *arquivo_pth2 = fopen("mandelbrot_gpsf_pthreads2.pgm", "w");
+    
+    for (int y = 0; y < altura; y++) {
+        for (int x = 0; x < largura; x++) {
+            fprintf(arquivo_pth2, "%d ", matriz_imagem2[y * largura + x]);
+        }
+        fprintf(arquivo_pth2, "\n");
+    }
+
+    fclose(arquivo_pth2);
+    free(matriz_imagem2);
 
     return 0;
 }
