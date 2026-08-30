@@ -238,16 +238,41 @@ int main(int argc, char *argv[]){
     }
 
     FILE *arquivo_pth2 = fopen("mandelbrot_gpsf_pthreads2.pgm", "w");
+    if (arquivo_pth2 == NULL) {
+        free(matriz_imagem2);
+        FILE *erro = fopen("erros.txt", "w");
+        if (erro != NULL) {
+            fprintf(erro, "Erro: Falha ao criar o arquivo Pthreads 2\n");
+            fclose(erro);
+        }
+        return 1;
+    }
     
+    int erro_pth2 = 0;
     for (int y = 0; y < altura; y++) {
         for (int x = 0; x < largura; x++) {
-            fprintf(arquivo_pth2, "%d ", matriz_imagem2[y * largura + x]);
+            if (fprintf(arquivo_pth2, "%d ", matriz_imagem2[y * largura + x]) < 0) {
+                erro_pth2 = 1;
+                break;
+            }
         }
-        fprintf(arquivo_pth2, "\n");
+        if (erro_pth2 || fprintf(arquivo_pth2, "\n") < 0) {
+            erro_pth2 = 1;
+            break;
+        }
     }
 
     fclose(arquivo_pth2);
     free(matriz_imagem2);
+
+    if (erro_pth2) {
+        FILE *erro = fopen("erros.txt", "w");
+        if (erro != NULL) {
+            fprintf(erro, "Erro: Falha ao escrever no arquivo Pthreads 2\n");
+            fclose(erro);
+        }
+        return 1;
+    }
 
     return 0;
 }
