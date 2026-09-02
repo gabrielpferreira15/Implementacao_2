@@ -234,24 +234,42 @@ int main(int argc, char *argv[]){
     if (matriz_imagem2 == NULL) {
         FILE *erro = fopen("erros.txt", "w");
         if (erro != NULL) {
-            fprintf(erro, "Erro: Falha de alocação de memória para o Pthreads 2\n");
+            fprintf(erro, "Erro: Falha de alocação de memória para o Pthreads2\n");
             fclose(erro);
         }
         return 1;
     }
 
+    for (int y = 0; y < altura; y++) {
+        for (int x = 0; x < largura; x++) {
+            matriz_imagem2[y * largura + x] = calcular_mandelbrot_bruto(x, largura, y, altura, max_iteracoes);
+        }
+    }
+
     pthread_t threads2[num_threads];
     Pthreads args_thread2[num_threads];
 
+    int total_pixels = largura * altura;
+    int pixels_por_thread = total_pixels/num_threads;
+    int pixels_extras = total_pixels%num_threads;
+    int indice_atual = 0;
+
     for (int i = 0; i < num_threads; i++) {
-        args_thread2[i].id_thread = i;
-        args_thread2[i].num_threads = num_threads; 
-        args_thread2[i].largura = largura;
-        args_thread2[i].altura = altura;
         args_thread2[i].max_iteracoes = max_iteracoes;
         args_thread2[i].matriz_resultado = matriz_imagem2;
+        args_thread2[i].linha_inicio = indice_atual;
         
-        pthread_create(&threads2[i], NULL, calcular_mandelbrot_pthreads2, &args_thread2[i]);
+        int carga_adicional;
+        if (i < pixels_extras) {
+            carga_adicional = 1;
+        } else {
+            carga_adicional = 0;
+        }
+
+        args_thread2[i].linha_fim = indice_atual + pixels_por_thread + carga_adicional;
+        indice_atual = args_thread2[i].linha_fim;
+
+        pthread_create(&threads2[i], NULL, normalizar_matriz_pthreads2, &args_thread2[i]);
     }
 
     for (int i = 0; i < num_threads; i++) {
@@ -263,7 +281,7 @@ int main(int argc, char *argv[]){
         free(matriz_imagem2);
         FILE *erro = fopen("erros.txt", "w");
         if (erro != NULL) {
-            fprintf(erro, "Erro: Falha ao criar o arquivo Pthreads 2\n");
+            fprintf(erro, "Erro: Falha ao criar o arquivo Pthreads2\n");
             fclose(erro);
         }
         return 1;
@@ -289,7 +307,7 @@ int main(int argc, char *argv[]){
     if (erro_pth2) {
         FILE *erro = fopen("erros.txt", "w");
         if (erro != NULL) {
-            fprintf(erro, "Erro: Falha ao escrever no arquivo Pthreads 2\n");
+            fprintf(erro, "Erro: Falha ao escrever no arquivo Pthreads2\n");
             fclose(erro);
         }
         return 1;
